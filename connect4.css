@@ -1,17 +1,9 @@
 /* game board table */
 
-th, td {
-  height: 50px;
+#board td {
   width: 50px;
-  border: 1px solid black;
-}
-
-#selectRow > th {
-  border-style: dashed;
-}
-
-#selectRow > th:hover {
-  background-color: yellow;
+  height: 50px;
+  border: solid 1px #666;
 }
 
 /* pieces are div within game table cells: draw as colored circles */
