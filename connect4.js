@@ -11,6 +11,11 @@ const HEIGHT = 6;
 let currPlayer = 1; // active player: 1 or 2
 const board = []; // array of rows, each row is array of cells  (board[y][x])
 
+let gameInfo = document.getElementById('gameInfo')
+
+let playerText = document.getElementById('player')
+playerText.innerText = `Current player: Player ${currPlayer}`
+
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
@@ -56,7 +61,12 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  return 0;
+  for (let y = HEIGHT - 1; y < y >= 0; y--) {
+    if (!board[y][x]) {
+      return y
+    }
+  };
+  return null;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -77,6 +87,10 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   // TODO: pop up alert message
+  alert(msg);
+  let winner = document.createElement('p')
+  winner.innerText = `Player ${currPlayer} won the game!`;
+  gameInfo.append(winner)
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -93,8 +107,8 @@ function handleClick(evt) {
 
   // place piece in board and add to HTML table
   // TODO: add line to update in-memory board
-  board[y][x] = currPlayer
   placeInTable(y, x);
+  board[y][x] = currPlayer
 
   // check for win
   if (checkForWin()) {
@@ -108,6 +122,7 @@ function handleClick(evt) {
   // switch players
   // TODO: switch currPlayer 1 <-> 2
   currPlayer = currPlayer === 1 ? 2 : 1;
+  playerText.innerText = `Current player: Player ${currPlayer}`
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
