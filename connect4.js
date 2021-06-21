@@ -33,7 +33,7 @@ function makeHtmlBoard() {
   // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
   const htmlBoard = document.getElementById('board');
   // TODO: add comment for this code
-  const top = document.createElement("tr");
+  const top = document.createElement("tr"); // variable for top row
   top.setAttribute("id", "column-top");
   top.addEventListener("click", handleClick);
 
