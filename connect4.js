@@ -34,10 +34,10 @@ function makeHtmlBoard() {
   const htmlBoard = document.getElementById('board');
   // TODO: add comment for this code
   const top = document.createElement("tr"); // variable for top row
-  top.setAttribute("id", "column-top");
-  top.addEventListener("click", handleClick);
+  top.setAttribute("id", "column-top"); // setting attribute
+  top.addEventListener("click", handleClick); // setting click event
 
-  for (let x = 0; x < WIDTH; x++) {
+  for (let x = 0; x < WIDTH; x++) { // creating the cells for the top row
     const headCell = document.createElement("td");
     headCell.setAttribute("id", x);
     top.append(headCell);
@@ -45,11 +45,11 @@ function makeHtmlBoard() {
   htmlBoard.append(top);
 
   // TODO: add comment for this code
-  for (let y = 0; y < HEIGHT; y++) {
-    const row = document.createElement("tr");
+  for (let y = 0; y < HEIGHT; y++) { // creating the rest of the board
+    const row = document.createElement("tr"); // create row
 
-    for (let x = 0; x < WIDTH; x++) {
-      let cell = document.createElement("td");
+    for (let x = 0; x < WIDTH; x++) { // creating cell for each row
+      let cell = document.createElement("td")
       cell.setAttribute("id", `${y}-${x}`);
       row.append(cell);
     }
@@ -61,7 +61,7 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  for (let y = HEIGHT - 1; y < y >= 0; y--) {
+  for (let y = HEIGHT - 1; y >= 0; y--) {
     if (!board[y][x]) {
       return y
     }
@@ -95,12 +95,12 @@ function endGame(msg) {
 
 /** handleClick: handle click of column top to play piece */
 
-function handleClick(evt) {
+function handleClick(evt) { // what happens when you click on a cell in the top row
   // get x from ID of clicked cell
   let x = +evt.target.id;
 
   // get next spot in column (if none, ignore click)
-  let y = findSpotForCol(x);
+  let y = findSpotForCol(x); // findSpotForCol goes through the array to check for nulls. If no nulls exist, ignore click
   if (y === null) {
     return;
   }
